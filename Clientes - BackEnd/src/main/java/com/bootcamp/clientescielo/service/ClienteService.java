@@ -1,4 +1,4 @@
-package com.bootcamp.clientescielo.service.impl;
+package com.bootcamp.clientescielo.service;
 
 import com.bootcamp.clientescielo.model.Cliente;
 

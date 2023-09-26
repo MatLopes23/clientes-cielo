@@ -1,11 +1,11 @@
-package com.bootcamp.clientescielo.service;
+package com.bootcamp.clientescielo.service.impl;
 
 import com.bootcamp.clientescielo.exception.ClienteExistenteException;
 import com.bootcamp.clientescielo.exception.ClienteNaoEncontradoException;
 import com.bootcamp.clientescielo.model.Cliente;
 import com.bootcamp.clientescielo.model.enums.TipoClienteEnum;
 import com.bootcamp.clientescielo.repository.ClienteRepository;
-import com.bootcamp.clientescielo.service.impl.ClienteService;
+import com.bootcamp.clientescielo.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

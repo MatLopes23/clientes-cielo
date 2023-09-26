@@ -8,6 +8,7 @@ import com.bootcamp.clientescielo.model.Cliente;
 import com.bootcamp.clientescielo.model.PessoaFisica;
 import com.bootcamp.clientescielo.model.enums.TipoClienteEnum;
 import com.bootcamp.clientescielo.repository.ClienteRepository;
+import com.bootcamp.clientescielo.service.impl.ClienteServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
