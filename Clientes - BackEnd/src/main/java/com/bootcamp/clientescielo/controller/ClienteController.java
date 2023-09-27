@@ -60,8 +60,12 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long id, @RequestBody ClienteRequestDTO clienteRequest) {
         logger.info("Endpoint: Atualizar cliente. ID: {}", id);
+
+        clienteRequest.validaRequest();
+
+        Cliente cliente = converter.toModel(clienteRequest);
 
         Cliente clienteAtualizado = clienteService.atualizarCliente(id, cliente);
         logger.info("Cliente atualizado com sucesso. ID: {}", clienteAtualizado.getId());

@@ -40,6 +40,7 @@ public class ClienteServiceImpl implements ClienteService {
         validarDuplicacaoCliente(cliente);
         cliente.setDataCadastro(new Date());
         cliente.setDataAtualizacao(new Date());
+
         return clienteRepository.save(cliente);
     }
 
@@ -48,9 +49,9 @@ public class ClienteServiceImpl implements ClienteService {
         Cliente clienteExistente = buscarClienteOuFalha(id);
 
         validarDuplicacaoCliente(clienteAtualizado, id);
-        clienteAtualizado.setId(clienteExistente.getId());
-        return clienteRepository.save(clienteAtualizado);
+       atualizarCamposCliente(clienteExistente, clienteAtualizado);
 
+        return clienteRepository.save(clienteAtualizado);
     }
 
 
@@ -70,6 +71,19 @@ public class ClienteServiceImpl implements ClienteService {
 
     private void validarDuplicacaoCliente(Cliente cliente) {
         validarDuplicacaoCliente(cliente, null);
+    }
+
+    private void atualizarCamposCliente(Cliente clienteExistente, Cliente clienteAtualizado){
+
+        if (clienteAtualizado.getPessoaFisica() != null && clienteExistente.getPessoaFisica() != null) {
+            clienteAtualizado.getPessoaFisica().setId(clienteExistente.getPessoaFisica().getId());
+        } else if (clienteAtualizado.getPessoaJuridica() != null && clienteExistente.getPessoaJuridica() != null) {
+            clienteAtualizado.getPessoaJuridica().setId(clienteExistente.getPessoaJuridica().getId());
+        }
+
+        clienteAtualizado.setId(clienteExistente.getId());
+        clienteAtualizado.setDataCadastro(clienteExistente.getDataCadastro());
+        clienteAtualizado.setDataAtualizacao(new Date());
     }
 
     @Override
