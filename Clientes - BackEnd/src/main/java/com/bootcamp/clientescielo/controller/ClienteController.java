@@ -1,9 +1,9 @@
 package com.bootcamp.clientescielo.controller;
 
+import com.bootcamp.clientescielo.dto.converter.ClienteConverter;
 import com.bootcamp.clientescielo.dto.request.ClienteRequestDTO;
 import com.bootcamp.clientescielo.model.Cliente;
 import com.bootcamp.clientescielo.service.ClienteService;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +18,13 @@ import java.util.List;
 public class ClienteController {
 
     private static final Logger logger = LoggerFactory.getLogger(ClienteController.class);
-
     private final ClienteService clienteService;
-    private final ModelMapper modelMapper;
+    private final ClienteConverter converter;
 
     @Autowired
-    public ClienteController(ClienteService clienteService, ModelMapper modelMapper) {
+    public ClienteController(ClienteService clienteService, ClienteConverter converter) {
         this.clienteService = clienteService;
-        this.modelMapper = modelMapper;
+        this.converter = converter;
     }
 
     @GetMapping
@@ -52,7 +51,7 @@ public class ClienteController {
 
         clienteRequest.validaRequest();
 
-        Cliente cliente = modelMapper.map(clienteRequest, Cliente.class);
+        Cliente cliente = converter.toModel(clienteRequest);
 
         Cliente novoCliente = clienteService.criarCliente(cliente);
         logger.info("Cliente criado com sucesso. ID: {}", novoCliente.getId());

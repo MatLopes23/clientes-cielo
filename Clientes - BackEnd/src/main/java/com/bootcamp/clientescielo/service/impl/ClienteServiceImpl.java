@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -37,26 +37,24 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente criarCliente(Cliente cliente) {
-        validarCliente(cliente);
+        validarDuplicacaoCliente(cliente);
+        cliente.setDataCadastro(new Date());
+        cliente.setDataAtualizacao(new Date());
         return clienteRepository.save(cliente);
     }
 
     @Override
     public Cliente atualizarCliente(Long id, Cliente clienteAtualizado) {
-        Optional<Cliente> clienteExistente = clienteRepository.findById(id);
+        Cliente clienteExistente = buscarClienteOuFalha(id);
 
-        if (clienteExistente.isPresent()) {
+        validarDuplicacaoCliente(clienteAtualizado, id);
+        clienteAtualizado.setId(clienteExistente.getId());
+        return clienteRepository.save(clienteAtualizado);
 
-            validarCliente(clienteAtualizado, id);
-            clienteAtualizado.setId(clienteExistente.get().getId());
-            return clienteRepository.save(clienteAtualizado);
-        } else {
-            throw new ClienteNaoEncontradoException("Cliente não encontrado com ID: " + id);
-        }
     }
 
 
-    private void validarCliente(Cliente cliente, Long id) {
+    private void validarDuplicacaoCliente(Cliente cliente, Long id) {
         if (cliente.getTipoCliente() == TipoClienteEnum.PESSOA_FISICA) {
             String cpf = cliente.getPessoaFisica().getCpf();
             if (clienteRepository.existsByPessoaFisicaCpfAndIdNot(cpf, id)) {
@@ -70,8 +68,8 @@ public class ClienteServiceImpl implements ClienteService {
         }
     }
 
-    private void validarCliente(Cliente cliente) {
-        validarCliente(cliente, null);
+    private void validarDuplicacaoCliente(Cliente cliente) {
+        validarDuplicacaoCliente(cliente, null);
     }
 
     @Override

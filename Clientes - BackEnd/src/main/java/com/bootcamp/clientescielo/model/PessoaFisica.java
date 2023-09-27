@@ -1,5 +1,6 @@
 package com.bootcamp.clientescielo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class PessoaFisica {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "cpf", nullable = false)
@@ -25,8 +26,8 @@ public class PessoaFisica {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @MapsId
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "id")
     private Cliente cliente;
 
