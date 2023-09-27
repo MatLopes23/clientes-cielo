@@ -36,7 +36,7 @@ public class GlobalExceptionHandler {
 
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
-                ex.getConstraintViolations().stream().findFirst().toString()
+                ex.getConstraintViolations().stream().findFirst().orElseThrow().getMessageTemplate()
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }

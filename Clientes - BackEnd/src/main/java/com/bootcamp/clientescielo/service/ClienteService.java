@@ -3,7 +3,6 @@ package com.bootcamp.clientescielo.service;
 import com.bootcamp.clientescielo.model.Cliente;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ClienteService {
 
