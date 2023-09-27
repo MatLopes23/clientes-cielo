@@ -1,7 +1,9 @@
 package com.bootcamp.clientescielo.controller;
 
+import com.bootcamp.clientescielo.dto.request.ClienteRequestDTO;
 import com.bootcamp.clientescielo.model.Cliente;
 import com.bootcamp.clientescielo.service.ClienteService;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,12 @@ public class ClienteController {
     private static final Logger logger = LoggerFactory.getLogger(ClienteController.class);
 
     private final ClienteService clienteService;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public ClienteController(ClienteService clienteService) {
+    public ClienteController(ClienteService clienteService, ModelMapper modelMapper) {
         this.clienteService = clienteService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping
@@ -43,8 +47,12 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> criarCliente(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> criarCliente(@RequestBody ClienteRequestDTO clienteRequest) {
         logger.info("Endpoint: Criar cliente");
+
+        clienteRequest.validaRequest();
+
+        Cliente cliente = modelMapper.map(clienteRequest, Cliente.class);
 
         Cliente novoCliente = clienteService.criarCliente(cliente);
         logger.info("Cliente criado com sucesso. ID: {}", novoCliente.getId());

@@ -29,6 +29,18 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(CustomValidationException.class)
+    public ResponseEntity<Object> handleCustomValidationException(CustomValidationException ex) {
+        logger.warn("Uma exceção CustomValidationException ocorreu. {}", ex.getMessage());
+
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getConstraintViolations().stream().findFirst().toString()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleException(Exception ex) {
         logger.error("Uma exceção não tratada ocorreu: {}", ex.getMessage());
