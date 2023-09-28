@@ -2,6 +2,7 @@ package com.bootcamp.clientescielo.core.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.bootcamp.clientescielo.core.component.QueueGestor;
 import com.bootcamp.clientescielo.exception.ClienteExistenteException;
 import com.bootcamp.clientescielo.exception.ClienteNaoEncontradoException;
 import com.bootcamp.clientescielo.core.model.Cliente;
@@ -25,6 +26,9 @@ class ClienteServiceImplTest {
 
     @Mock
     private ClienteRepository clienteRepository;
+
+    @Mock
+    private QueueGestor queueGestor;
 
     @InjectMocks
     private ClienteServiceImpl clienteService;
