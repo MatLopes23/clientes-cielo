@@ -4,6 +4,7 @@ import com.bootcamp.clientescielo.core.service.ClienteService;
 import com.bootcamp.clientescielo.web.dto.converter.ClienteConverter;
 import com.bootcamp.clientescielo.web.dto.request.ClienteRequestDTO;
 import com.bootcamp.clientescielo.core.model.Cliente;
+import com.bootcamp.clientescielo.web.dto.response.ClienteResponseDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,25 +29,28 @@ public class ClienteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Cliente>> listarClientes() {
+    public ResponseEntity<List<ClienteResponseDTO>> listarClientes() {
         logger.info("Lista todos os clientes cadastrados.");
 
         List<Cliente> clientes = clienteService.listarClientes();
-        return ResponseEntity.ok(clientes);
+
+        return ResponseEntity
+                .ok(converter.toListResponse(clientes));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> buscarClientePorId(@PathVariable Long id) {
+    public ResponseEntity<ClienteResponseDTO> buscarClientePorId(@PathVariable Long id) {
         logger.info("Endpoint: Busca por cliente com ID: {}", id);
 
         Cliente cliente = clienteService.buscarClienteOuFalha(id);
         logger.info("Cliente recuperado com sucesso. ID: {}", id);
 
-        return ResponseEntity.ok(cliente);
+        return ResponseEntity
+                .ok(converter.toResponse(cliente));
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> criarCliente(@RequestBody ClienteRequestDTO clienteRequest) {
+    public ResponseEntity<ClienteResponseDTO> criarCliente(@RequestBody ClienteRequestDTO clienteRequest) {
         logger.info("Endpoint: Criar cliente");
 
         clienteRequest.validaRequest();
@@ -56,11 +60,13 @@ public class ClienteController {
         Cliente novoCliente = clienteService.criarCliente(cliente);
         logger.info("Cliente criado com sucesso. ID: {}", novoCliente.getId());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(converter.toResponse(cliente));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long id, @RequestBody ClienteRequestDTO clienteRequest) {
+    public ResponseEntity<ClienteResponseDTO> atualizarCliente(@PathVariable Long id, @RequestBody ClienteRequestDTO clienteRequest) {
         logger.info("Endpoint: Atualizar cliente. ID: {}", id);
 
         clienteRequest.validaRequest();
@@ -70,7 +76,8 @@ public class ClienteController {
         Cliente clienteAtualizado = clienteService.atualizarCliente(id, cliente);
         logger.info("Cliente atualizado com sucesso. ID: {}", clienteAtualizado.getId());
 
-        return ResponseEntity.ok(clienteAtualizado);
+        return ResponseEntity
+                .ok(converter.toResponse(clienteAtualizado));
     }
 
     @DeleteMapping("/{id}")
