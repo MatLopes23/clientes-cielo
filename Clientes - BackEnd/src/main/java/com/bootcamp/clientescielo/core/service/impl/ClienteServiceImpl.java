@@ -1,5 +1,6 @@
 package com.bootcamp.clientescielo.core.service.impl;
 
+import com.bootcamp.clientescielo.core.component.QueueGestor;
 import com.bootcamp.clientescielo.core.service.ClienteService;
 import com.bootcamp.clientescielo.exception.ClienteExistenteException;
 import com.bootcamp.clientescielo.exception.ClienteNaoEncontradoException;
@@ -19,9 +20,12 @@ public class ClienteServiceImpl implements ClienteService {
 
     private final ClienteRepository clienteRepository;
 
+    private final QueueGestor queueGestor;
+
     @Autowired
-    public ClienteServiceImpl(ClienteRepository clienteRepository) {
+    public ClienteServiceImpl(ClienteRepository clienteRepository, QueueGestor queueGestor) {
         this.clienteRepository = clienteRepository;
+        this.queueGestor = queueGestor;
     }
 
     @Override
@@ -41,17 +45,24 @@ public class ClienteServiceImpl implements ClienteService {
         cliente.setDataCadastro(new Date());
         cliente.setDataAtualizacao(new Date());
 
-        return clienteRepository.save(cliente);
+        Cliente novoCliente = clienteRepository.save(cliente);
+        queueGestor.adicionarCliente(novoCliente);
+
+        return novoCliente;
     }
 
     @Override
-    public Cliente atualizarCliente(Long id, Cliente clienteAtualizado) {
+    public Cliente atualizarCliente(Long id, Cliente cliente) {
         Cliente clienteExistente = buscarClienteOuFalha(id);
 
-        validarDuplicacaoCliente(clienteAtualizado, id);
-       atualizarCamposCliente(clienteExistente, clienteAtualizado);
+        validarDuplicacaoCliente(cliente, id);
+        atualizarCamposCliente(clienteExistente, cliente);
 
-        return clienteRepository.save(clienteAtualizado);
+        Cliente clienteAtualizado = clienteRepository.save(cliente);
+
+        queueGestor.adicionarCliente(clienteAtualizado);
+
+        return clienteAtualizado;
     }
 
 
