@@ -33,10 +33,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleCustomValidationException(CustomValidationException ex) {
         logger.warn("Uma exceção CustomValidationException ocorreu. {}", ex.getMessage());
 
-
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
-                ex.getConstraintViolations().stream().findFirst().orElseThrow().getMessageTemplate()
+                ex.getConstraintViolations().stream().findFirst().orElseThrow().getMessage()
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
