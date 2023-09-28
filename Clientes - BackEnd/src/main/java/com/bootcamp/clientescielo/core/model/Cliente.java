@@ -1,6 +1,6 @@
-package com.bootcamp.clientescielo.model;
+package com.bootcamp.clientescielo.core.model;
 
-import com.bootcamp.clientescielo.model.enums.TipoClienteEnum;
+import com.bootcamp.clientescielo.core.model.enums.TipoClienteEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

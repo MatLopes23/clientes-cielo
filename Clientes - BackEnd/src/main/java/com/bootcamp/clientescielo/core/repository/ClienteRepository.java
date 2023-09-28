@@ -1,6 +1,6 @@
-package com.bootcamp.clientescielo.repository;
+package com.bootcamp.clientescielo.core.repository;
 
-import com.bootcamp.clientescielo.model.Cliente;
+import com.bootcamp.clientescielo.core.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

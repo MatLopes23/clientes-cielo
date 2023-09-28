@@ -1,4 +1,4 @@
-package com.bootcamp.clientescielo.dto;
+package com.bootcamp.clientescielo.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

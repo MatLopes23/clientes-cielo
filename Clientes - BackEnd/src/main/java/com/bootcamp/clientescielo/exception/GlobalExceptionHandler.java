@@ -1,6 +1,6 @@
 package com.bootcamp.clientescielo.exception;
 
-import com.bootcamp.clientescielo.dto.ErrorResponse;
+import com.bootcamp.clientescielo.web.dto.ErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

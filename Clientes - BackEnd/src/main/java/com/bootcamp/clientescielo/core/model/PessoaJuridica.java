@@ -1,4 +1,4 @@
-package com.bootcamp.clientescielo.model;
+package com.bootcamp.clientescielo.core.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

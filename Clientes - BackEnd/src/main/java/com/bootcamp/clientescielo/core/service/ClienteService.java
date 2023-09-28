@@ -1,6 +1,6 @@
-package com.bootcamp.clientescielo.service;
+package com.bootcamp.clientescielo.core.service;
 
-import com.bootcamp.clientescielo.model.Cliente;
+import com.bootcamp.clientescielo.core.model.Cliente;
 
 import java.util.List;
 

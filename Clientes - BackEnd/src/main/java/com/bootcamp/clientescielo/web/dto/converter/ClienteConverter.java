@@ -1,10 +1,10 @@
-package com.bootcamp.clientescielo.dto.converter;
+package com.bootcamp.clientescielo.web.dto.converter;
 
-import com.bootcamp.clientescielo.dto.request.ClienteRequestDTO;
-import com.bootcamp.clientescielo.model.Cliente;
-import com.bootcamp.clientescielo.model.PessoaFisica;
-import com.bootcamp.clientescielo.model.PessoaJuridica;
-import com.bootcamp.clientescielo.model.enums.TipoClienteEnum;
+import com.bootcamp.clientescielo.web.dto.request.ClienteRequestDTO;
+import com.bootcamp.clientescielo.core.model.Cliente;
+import com.bootcamp.clientescielo.core.model.PessoaFisica;
+import com.bootcamp.clientescielo.core.model.PessoaJuridica;
+import com.bootcamp.clientescielo.core.model.enums.TipoClienteEnum;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,9 +12,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClienteConverter {
 
+    private ModelMapper modelMapper;
 
     @Autowired
-    private ModelMapper modelMapper;
+    public ClienteConverter(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
     public Cliente toModel(ClienteRequestDTO clienteRequest) {
         Cliente cliente =  modelMapper.map(clienteRequest, Cliente.class);

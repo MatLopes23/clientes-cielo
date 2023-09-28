@@ -1,4 +1,4 @@
-package com.bootcamp.clientescielo.validation;
+package com.bootcamp.clientescielo.web.validation;
 
 import com.bootcamp.clientescielo.exception.CustomValidationException;
 import jakarta.validation.ConstraintViolation;

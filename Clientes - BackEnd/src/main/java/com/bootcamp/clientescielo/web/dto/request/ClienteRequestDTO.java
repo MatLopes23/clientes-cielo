@@ -1,9 +1,9 @@
-package com.bootcamp.clientescielo.dto.request;
+package com.bootcamp.clientescielo.web.dto.request;
 
-import com.bootcamp.clientescielo.model.enums.TipoClienteEnum;
-import com.bootcamp.clientescielo.validation.PessoaFisicaValidation;
-import com.bootcamp.clientescielo.validation.PessoaJuridicaValidation;
-import com.bootcamp.clientescielo.validation.ValidatorUtil;
+import com.bootcamp.clientescielo.core.model.enums.TipoClienteEnum;
+import com.bootcamp.clientescielo.web.validation.PessoaFisicaValidation;
+import com.bootcamp.clientescielo.web.validation.PessoaJuridicaValidation;
+import com.bootcamp.clientescielo.web.validation.ValidatorUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

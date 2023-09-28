@@ -1,9 +1,9 @@
-package com.bootcamp.clientescielo.controller;
+package com.bootcamp.clientescielo.web.controller;
 
-import com.bootcamp.clientescielo.dto.converter.ClienteConverter;
-import com.bootcamp.clientescielo.dto.request.ClienteRequestDTO;
-import com.bootcamp.clientescielo.model.Cliente;
-import com.bootcamp.clientescielo.service.ClienteService;
+import com.bootcamp.clientescielo.core.service.ClienteService;
+import com.bootcamp.clientescielo.web.dto.converter.ClienteConverter;
+import com.bootcamp.clientescielo.web.dto.request.ClienteRequestDTO;
+import com.bootcamp.clientescielo.core.model.Cliente;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

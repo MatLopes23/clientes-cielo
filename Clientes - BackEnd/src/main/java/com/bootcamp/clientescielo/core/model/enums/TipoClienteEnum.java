@@ -1,4 +1,4 @@
-package com.bootcamp.clientescielo.model.enums;
+package com.bootcamp.clientescielo.core.model.enums;
 
 public enum TipoClienteEnum {
     PESSOA_FISICA,

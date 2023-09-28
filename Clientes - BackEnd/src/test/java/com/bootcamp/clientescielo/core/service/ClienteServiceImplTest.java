@@ -1,14 +1,14 @@
-package com.bootcamp.clientescielo.service;
+package com.bootcamp.clientescielo.core.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.bootcamp.clientescielo.exception.ClienteExistenteException;
 import com.bootcamp.clientescielo.exception.ClienteNaoEncontradoException;
-import com.bootcamp.clientescielo.model.Cliente;
-import com.bootcamp.clientescielo.model.PessoaFisica;
-import com.bootcamp.clientescielo.model.enums.TipoClienteEnum;
-import com.bootcamp.clientescielo.repository.ClienteRepository;
-import com.bootcamp.clientescielo.service.impl.ClienteServiceImpl;
+import com.bootcamp.clientescielo.core.model.Cliente;
+import com.bootcamp.clientescielo.core.model.PessoaFisica;
+import com.bootcamp.clientescielo.core.model.enums.TipoClienteEnum;
+import com.bootcamp.clientescielo.core.repository.ClienteRepository;
+import com.bootcamp.clientescielo.core.service.impl.ClienteServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -21,7 +21,7 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
-public class ClienteServiceImplTest {
+class ClienteServiceImplTest {
 
     @Mock
     private ClienteRepository clienteRepository;
@@ -49,7 +49,7 @@ public class ClienteServiceImplTest {
     }
 
     @Test
-    public void testListarClientes() {
+    void testListarClientes() {
         List<Cliente> clientes = new ArrayList<>();
         clientes.add(new Cliente());
         clientes.add(new Cliente());
@@ -62,7 +62,7 @@ public class ClienteServiceImplTest {
     }
 
     @Test
-    public void testBuscarClienteOuFalha() {
+    void testBuscarClienteOuFalha() {
         Cliente cliente = clienteExemplo;
 
         when(clienteRepository.findById(1L)).thenReturn(Optional.of(cliente));
@@ -73,14 +73,14 @@ public class ClienteServiceImplTest {
     }
 
     @Test
-    public void testBuscarClienteOuFalhaNaoEncontrado() {
+    void testBuscarClienteOuFalhaNaoEncontrado() {
         when(clienteRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThrows(ClienteNaoEncontradoException.class, () -> clienteService.buscarClienteOuFalha(1L));
     }
 
     @Test
-    public void testCriarCliente() {
+    void testCriarCliente() {
         Cliente cliente = clienteExemplo;
         PessoaFisica pessoaFisica = pessoaFisicaExemplo;
         cliente.setPessoaFisica(pessoaFisica);
@@ -94,7 +94,7 @@ public class ClienteServiceImplTest {
     }
 
     @Test
-    public void testCriarClienteExistente() {
+    void testCriarClienteExistente() {
         Cliente cliente = Cliente
                 .builder()
                 .tipoCliente(TipoClienteEnum.PESSOA_FISICA)
@@ -108,7 +108,7 @@ public class ClienteServiceImplTest {
     }
 
     @Test
-    public void testAtualizarCliente() {
+    void testAtualizarCliente() {
         Cliente clienteExistente = clienteExemplo;
 
         PessoaFisica pessoaFisicaExistente = pessoaFisicaExemplo;
@@ -134,7 +134,7 @@ public class ClienteServiceImplTest {
     }
 
     @Test
-    public void testAtualizarClienteNaoEncontrado() {
+    void testAtualizarClienteNaoEncontrado() {
         when(clienteRepository.findById(1L)).thenReturn(Optional.empty());
 
         Cliente clienteAtualizado = new Cliente();
@@ -142,7 +142,7 @@ public class ClienteServiceImplTest {
     }
 
     @Test
-    public void testAtualizarClienteExistente() {
+    void testAtualizarClienteExistente() {
         Cliente clienteExistente = clienteExemplo;
         PessoaFisica pessoaFisicaExistente = pessoaFisicaExemplo;
         clienteExistente.setPessoaFisica(pessoaFisicaExistente);
@@ -161,7 +161,7 @@ public class ClienteServiceImplTest {
     }
 
     @Test
-    public void testExcluirCliente() {
+    void testExcluirCliente() {
         doNothing().when(clienteRepository).deleteById(1L);
 
         assertDoesNotThrow(() -> clienteService.excluirCliente(1L));
