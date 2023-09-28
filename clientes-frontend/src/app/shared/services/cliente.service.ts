@@ -8,7 +8,7 @@ import { IClienteResponse } from '../models/cliente.model';
 })
 export class ClienteService {
   constructor(private httpClient: HttpClient) {}
-  private apiUrl = 'http://localhost:8080/api/cliente';
+  private apiUrl = 'http://localhost:8080/cliente';
 
   getClientes(): Observable<IClienteResponse[]> {
     return this.httpClient.get<IClienteResponse[]>(`${this.apiUrl}`);

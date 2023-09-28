@@ -4,15 +4,22 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AppRoutingModule } from './app-routing.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListarClienteComponent } from './listar-cliente/listar-cliente.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { CriarClienteComponent } from './criar-cliente/criar-cliente.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, ListarClienteComponent],
+  declarations: [AppComponent, ListarClienteComponent, CriarClienteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,6 +30,14 @@ import { CommonModule } from '@angular/common';
     MatTableModule,
     MatDialogModule,
     MatCardModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
+    ReactiveFormsModule,
+
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

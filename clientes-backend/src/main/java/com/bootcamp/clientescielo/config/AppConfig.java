@@ -8,11 +8,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration
-public class ModelMapperConfig {
+public class AppConfig {
 
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("http://localhost:4200");
         corsConfiguration.addAllowedOrigin("http://localhost");
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.addAllowedHeader("*");

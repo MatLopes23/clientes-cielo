@@ -1,0 +1,69 @@
+<button mat-raised-button color="primary" (click)="togglePessoa()">
+  {{ isPessoaFisica ? "Pessoa Jurídica" : "Pessoa Física" }}
+</button>
+<form [formGroup]="clienteForm">
+  <div *ngIf="!isPessoaFisica; else pessoaFisicaSection">
+    <mat-form-field style="display: block">
+      <mat-label>CNPJ</mat-label>
+      <input matInput placeholder="CNPJ" formControlName="cnpj" />
+    </mat-form-field>
+
+    <mat-form-field style="display: block">
+      <mat-label>Razão Social</mat-label>
+      <input
+        matInput
+        placeholder="Razão Social"
+        formControlName="razaoSocial"
+      />
+    </mat-form-field>
+
+    <mat-form-field style="display: block">
+      <mat-label>MCC</mat-label>
+      <input matInput placeholder="MCC" formControlName="mcc" />
+    </mat-form-field>
+
+    <mat-form-field style="display: block">
+      <mat-label>CPF Contato</mat-label>
+      <input matInput placeholder="CPF Contato" formControlName="cpfContato" />
+    </mat-form-field>
+
+    <mat-form-field style="display: block">
+      <mat-label>Nome Contato</mat-label>
+      <input
+        matInput
+        placeholder="Nome Contato"
+        formControlName="nomeContato"
+      />
+    </mat-form-field>
+
+    <mat-form-field style="display: block">
+      <mat-label>Email Contato</mat-label>
+      <input
+        matInput
+        placeholder="Email Contato"
+        formControlName="emailContato"
+      />
+    </mat-form-field>
+  </div>
+  <ng-template #pessoaFisicaSection>
+    <mat-form-field style="display: block">
+      <mat-label>CPF</mat-label>
+      <input matInput placeholder="CPF" formControlName="cpf" />
+    </mat-form-field>
+
+    <mat-form-field style="display: block">
+      <mat-label>MCC</mat-label>
+      <input matInput placeholder="MCC" formControlName="mcc" />
+    </mat-form-field>
+
+    <mat-form-field style="display: block">
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="Nome" formControlName="nome" />
+    </mat-form-field>
+
+    <mat-form-field style="display: block">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" formControlName="email" />
+    </mat-form-field>
+  </ng-template>
+</form>
