@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { IClienteResponse } from '../shared/models/cliente.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ExcluirClienteDialogComponent } from '../excluir-cliente-dialog/excluir-cliente-dialog.component';
 
 @Component({
   selector: 'app-listar-cliente',
@@ -14,7 +16,11 @@ export class ListarClienteComponent {
   clientes: MatTableDataSource<IClienteResponse> =
     new MatTableDataSource<IClienteResponse>();
 
-  constructor(private clienteService: ClienteService, private router: Router) {}
+  constructor(
+    private clienteService: ClienteService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.loadClientes();
@@ -24,7 +30,11 @@ export class ListarClienteComponent {
 
   editarCliente(cliente: any) {}
 
-  excluirCliente(cliente: any) {}
+  excluirCliente(cliente: IClienteResponse) {
+    const dialogRef = this.dialog.open(ExcluirClienteDialogComponent, {
+      data: { id: cliente.id },
+    });
+  }
 
   criarNovoCliente() {
     this.router.navigate(['/create']);

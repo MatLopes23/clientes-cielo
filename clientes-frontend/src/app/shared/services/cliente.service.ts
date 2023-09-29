@@ -11,10 +11,14 @@ export class ClienteService {
   private apiUrl = 'http://localhost:8080/cliente';
 
   getClientes(): Observable<IClienteResponse[]> {
-    return this.httpClient.get<IClienteResponse[]>(`${this.apiUrl}`);
+    return this.httpClient.get<IClienteResponse[]>(this.apiUrl);
   }
 
   postCliente(clienteData: any): Observable<IClienteRequest> {
-    return this.httpClient.post<IClienteRequest>(`${this.apiUrl}`, clienteData);
+    return this.httpClient.post<IClienteRequest>(this.apiUrl, clienteData);
+  }
+
+  deleteCliente(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.apiUrl}/${id}`);
   }
 }
