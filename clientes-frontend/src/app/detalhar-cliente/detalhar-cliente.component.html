@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Detalhes do Cliente</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p><strong>Tipo de Cliente:</strong> {{ cliente.tipoCliente }}</p>
+    <ng-container *ngIf="!isPessoaFisica; else pessoaFisicaSection">
+      <p><strong>CNPJ:</strong> {{ cliente.cnpj }}</p>
+      <p><strong>Razão Social:</strong> {{ cliente.razaoSocial }}</p>
+      <p><strong>MCC:</strong> {{ cliente.mcc }}</p>
+      <p><strong>CPF Contato:</strong> {{ cliente.cpf }}</p>
+      <p><strong>Nome Contato:</strong> {{ cliente.nome }}</p>
+      <p><strong>Email Contato:</strong> {{ cliente.email }}</p>
+    </ng-container>
+    <ng-template #pessoaFisicaSection>
+      <p><strong>CPF:</strong> {{ cliente.cpf }}</p>
+      <p><strong>MCC:</strong> {{ cliente.mcc }}</p>
+      <p><strong>Nome:</strong> {{ cliente.nome }}</p>
+      <p><strong>Email:</strong> {{ cliente.email }}</p>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

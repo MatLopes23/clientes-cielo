@@ -10,6 +10,10 @@ export class ClienteService {
   constructor(private httpClient: HttpClient) {}
   private apiUrl = 'http://localhost:8080/cliente';
 
+  getClientePorId(id: number): Observable<IClienteResponse> {
+    return this.httpClient.get<IClienteResponse>(`${this.apiUrl}/${id}`);
+  }
+
   getClientes(): Observable<IClienteResponse[]> {
     return this.httpClient.get<IClienteResponse[]>(this.apiUrl);
   }

@@ -18,9 +18,10 @@ import { CommonModule } from '@angular/common';
 import { CriarClienteComponent } from './criar-cliente/criar-cliente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExcluirClienteDialogComponent } from './excluir-cliente-dialog/excluir-cliente-dialog.component';
+import { DetalharClienteComponent } from './detalhar-cliente/detalhar-cliente.component';
 
 @NgModule({
-  declarations: [AppComponent, ListarClienteComponent, CriarClienteComponent, ExcluirClienteDialogComponent],
+  declarations: [AppComponent, ListarClienteComponent, CriarClienteComponent, ExcluirClienteDialogComponent, DetalharClienteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
