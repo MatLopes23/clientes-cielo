@@ -1,5 +1,5 @@
-<button mat-raised-button color="primary" (click)="togglePessoa()">
-  {{ isPessoaFisica ? "Pessoa Jurídica" : "Pessoa Física" }}
+<button mat-raised-button color="secondary" (click)="togglePessoa()">
+  {{ isPessoaFisica ? "Pessoa Física" : "Pessoa Jurídica" }}
 </button>
 <form [formGroup]="clienteForm">
   <div *ngIf="!isPessoaFisica; else pessoaFisicaSection">
@@ -24,7 +24,11 @@
 
     <mat-form-field style="display: block">
       <mat-label>CPF Contato</mat-label>
-      <input matInput placeholder="CPF Contato" formControlName="cpfContato" />
+      <input
+        matInput
+        placeholder="CPF Contato"
+        formControlName="cpfResponsavel"
+      />
     </mat-form-field>
 
     <mat-form-field style="display: block">
@@ -32,7 +36,7 @@
       <input
         matInput
         placeholder="Nome Contato"
-        formControlName="nomeContato"
+        formControlName="nomeResponsavel"
       />
     </mat-form-field>
 
@@ -48,7 +52,7 @@
   <ng-template #pessoaFisicaSection>
     <mat-form-field style="display: block">
       <mat-label>CPF</mat-label>
-      <input matInput placeholder="CPF" formControlName="cpf" />
+      <input matInput placeholder="CPF" formControlName="cpfResponsavel" />
     </mat-form-field>
 
     <mat-form-field style="display: block">
@@ -58,12 +62,16 @@
 
     <mat-form-field style="display: block">
       <mat-label>Nome</mat-label>
-      <input matInput placeholder="Nome" formControlName="nome" />
+      <input matInput placeholder="Nome" formControlName="nomeResponsavel" />
     </mat-form-field>
 
     <mat-form-field style="display: block">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="Email" formControlName="email" />
+      <input matInput placeholder="Email" formControlName="emailContato" />
     </mat-form-field>
   </ng-template>
+
+  <button mat-raised-button color="primary" (click)="criarCliente()">
+    Criar Cliente
+  </button>
 </form>

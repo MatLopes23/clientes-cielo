@@ -34,7 +34,6 @@ export class ListarClienteComponent {
 
   private loadClientes() {
     this.clienteService.getClientes().subscribe((data: IClienteResponse[]) => {
-      console.log(data);
       this.clientes = new MatTableDataSource(data);
     });
   }
