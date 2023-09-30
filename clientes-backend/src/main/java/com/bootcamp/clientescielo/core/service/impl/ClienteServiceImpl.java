@@ -83,7 +83,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     private void validarDuplicacaoCliente(Cliente cliente) {
-        validarDuplicacaoCliente(cliente, null);
+        validarDuplicacaoCliente(cliente, 0L);
     }
 
     private void atualizarCamposCliente(Cliente clienteExistente, Cliente clienteAtualizado){
