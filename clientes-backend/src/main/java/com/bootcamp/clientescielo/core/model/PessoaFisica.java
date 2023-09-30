@@ -26,6 +26,7 @@ public class PessoaFisica {
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @MapsId
     @OneToOne
     @JsonIgnore
     @JoinColumn(name = "id")

@@ -30,6 +30,7 @@ public class PessoaJuridica {
     @Column(name = "nome_contato", nullable = false)
     private String nomeContato;
 
+    @MapsId
     @OneToOne
     @JoinColumn(name = "id")
     @JsonIgnore

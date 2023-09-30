@@ -68,11 +68,13 @@ public class ClienteServiceImpl implements ClienteService {
 
     private void validarDuplicacaoCliente(Cliente cliente, Long id) {
         if (cliente.getTipoCliente() == TipoClienteEnum.PESSOA_FISICA) {
+            cliente.getPessoaFisica().setCliente(cliente);
             String cpf = cliente.getPessoaFisica().getCpf();
             if (Boolean.TRUE.equals(clienteRepository.existsByPessoaFisicaCpfAndIdNot(cpf, id))) {
                 throw new ClienteExistenteException("Cliente com o CPF já existe: " + cpf);
             }
         } else if (cliente.getTipoCliente() == TipoClienteEnum.PESSOA_JURIDICA) {
+            cliente.getPessoaJuridica().setCliente(cliente);
             String cnpj = cliente.getPessoaJuridica().getCnpj();
             if (Boolean.TRUE.equals(clienteRepository.existsByPessoaJuridicaCnpjAndIdNot(cnpj, id))) {
                 throw new ClienteExistenteException("Cliente com o CNPJ já existe: " + cnpj);
