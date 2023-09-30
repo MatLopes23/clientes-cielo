@@ -19,9 +19,10 @@ import { CriarClienteComponent } from './criar-cliente/criar-cliente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExcluirClienteDialogComponent } from './excluir-cliente-dialog/excluir-cliente-dialog.component';
 import { DetalharClienteComponent } from './detalhar-cliente/detalhar-cliente.component';
+import { VerificarAtualizacaoGestorComponent } from './verificar-atualizacao-gestor/verificar-atualizacao-gestor.component';
 
 @NgModule({
-  declarations: [AppComponent, ListarClienteComponent, CriarClienteComponent, ExcluirClienteDialogComponent, DetalharClienteComponent],
+  declarations: [AppComponent, ListarClienteComponent, CriarClienteComponent, ExcluirClienteDialogComponent, DetalharClienteComponent, VerificarAtualizacaoGestorComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

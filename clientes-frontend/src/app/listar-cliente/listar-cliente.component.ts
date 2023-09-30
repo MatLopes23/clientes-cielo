@@ -40,7 +40,9 @@ export class ListarClienteComponent {
     this.router.navigate(['/create']);
   }
 
-  verificarAtualizacoesGestor() {}
+  verificarAtualizacoesGestor() {
+    this.router.navigate(['/gestor']);
+  }
 
   private loadClientes() {
     this.clienteService.getClientes().subscribe((data: IClienteResponse[]) => {

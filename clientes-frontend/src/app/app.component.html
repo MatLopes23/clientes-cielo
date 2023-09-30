@@ -1,11 +1,15 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <img
-    width="50"
-    alt="Ada Tech Logo"
-    src="https://yt3.googleusercontent.com/szC0cpXS4cgBApOTeOUe-0TmrHkeaUr_XQzKyPcmlzy2mYd9_jxk817iwC8iIwgttSmNwkAu8gQ=s900-c-k-c0x00ffffff-no-rj"
-  />
-  <span> CieloProspect</span>
+  <a [routerLink]="'/'">
+    <img
+      width="50"
+      alt="Ada Tech Logo"
+      src="https://yt3.googleusercontent.com/szC0cpXS4cgBApOTeOUe-0TmrHkeaUr_XQzKyPcmlzy2mYd9_jxk817iwC8iIwgttSmNwkAu8gQ=s900-c-k-c0x00ffffff-no-rj"
+    />
+  </a>
+  <span>
+    <a [routerLink]="'/'" style="color: white">CieloProspect</a>
+  </span>
 </div>
 
 <div class="content" role="main">
