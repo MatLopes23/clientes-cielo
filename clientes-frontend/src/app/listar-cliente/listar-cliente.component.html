@@ -39,7 +39,7 @@
   </ng-container>
 
   <ng-container matColumnDef="nome">
-    <th mat-header-cell *matHeaderCellDef>Nome Responsável</th>
+    <th mat-header-cell *matHeaderCellDef>Nome</th>
     <td mat-cell *matCellDef="let cliente">{{ cliente.nome }}</td>
   </ng-container>
 
@@ -50,7 +50,9 @@
 
   <ng-container matColumnDef="cnpj">
     <th mat-header-cell *matHeaderCellDef>CNPJ</th>
-    <td mat-cell *matCellDef="let cliente">{{ cliente.cnpj }}</td>
+    <td mat-cell *matCellDef="let cliente">
+      {{ cliente.cnpj ? cliente.cnpj : "-" }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="razaoSocial">

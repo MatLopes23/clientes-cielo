@@ -12,7 +12,7 @@ import { ExcluirClienteDialogComponent } from '../excluir-cliente-dialog/excluir
   styleUrls: ['./listar-cliente.component.scss'],
 })
 export class ListarClienteComponent {
-  displayedColumns: string[] = ['id', 'cpf', 'nome', 'email', 'ações'];
+  displayedColumns: string[] = ['id', 'nome', 'cpf', 'cnpj', 'ações'];
   clientes: MatTableDataSource<IClienteResponse> =
     new MatTableDataSource<IClienteResponse>();
 
